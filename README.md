@@ -1,41 +1,56 @@
-# Talk to the GitHub API
+# GitHub is fun
 
-## Description
 
-Using OAuth and the GitHub API, allow people to log into GitHub and get a list of their repositories.
+Quickstart
+----------
 
-## Objectives
+Run the following commands to bootstrap your environment.
 
-### Learning Objectives
 
-After completing this assignment, you should understand:
+```
+cd github_is_fun
+pip install -r requirements.txt
+python manage.py db init
+python manage.py server
+```
 
-* The basics of OAuth
 
-## Details
+Deployment
+----------
 
-### Deliverables
+In your production environment, make sure you have an application.cfg
+file in your instance directory.
 
-* A Git repo called github-api containing at least:
-  * `README.md` file explaining how to run your project
-  * a `requirements.txt` file
-  * a suite of tests for your project
 
-### Requirements  
+Shell
+-----
 
-* Passing unit tests
-* No PEP8 or Pyflakes warnings or errors
+To open the interactive shell, run:
 
-## Normal Mode
+    python manage.py shell
 
-First, go to [the applications section of your GitHub preferences](https://github.com/settings/applications) and register a new application. The callback URL should be a URL you will create for logging in users via GitHub. `/login/github/authorized` is recommended if you don't have a preference.
+By default, you will have access to `app` and `db`.
 
-Using either [Flask-OAuthlib](https://flask-oauthlib.readthedocs.org/) or [Flask-Dance](http://flask-dance.readthedocs.org/en/latest/), write an application that lets a user log in via GitHub and shows all their repositories.
 
-## Hard Mode
+Running Tests
+-------------
 
-In addition to the requirements from **Normal Mode**:
+To run all tests, run:
 
-* Add pagination to allow seeing repositories in groups of 30.
-* Add the ability to change a repo's description.
+    python manage.py test
 
+
+Migrations
+----------
+
+Whenever a database migration needs to be made, run the following commmand:
+
+        python manage.py db migrate
+
+This will generate a new migration script. Then run:
+
+        python manage.py db upgrade
+
+to apply the migration.
+
+For a full migration command reference, run `python manage.py db --help`.
